@@ -6,9 +6,6 @@ This is the public version of the TWISS repository, containing minimal informati
 
 This project presents the development of a hybrid feature selection tool based on the Technique for Order of Preference by Similarity to Ideal Solution (TOPSIS) multicriteria decision-making method applied to a forearm electromyographic (EMG) signal dataset. This study sought to have a support tool for forearm gesture recognition projects with EMG signals and solutions for disabled users with adaptability for each user. For this, the following were used: data from 4 subjects (two healthy and two amputees), feature extraction algorithms in the time and frequency domains, sets of static features, various feature selection (FS) techniques, and the algorithm proposed TOPSIS + Wrapper Incremental Subset Selection (TWISS). To measure performance, the F1-macro metric was used. The experimental results show that TWISS exceeds the All Features set (0.6536) with 0.6614 without statistically significant differences and the Hudgins set (0.5626) with great difference. The data indicates that TWISS ranks more successfully than static techniques as well as generating feature sets that are customized to each user. In addition, this method was shown to be an intermediate between filter methods and wrapper methods in terms of error rate and computation time.
 
-## Tool
-- [TWISS Tool](https://colab.research.google.com/drive/1izDHLwcZMSNXFMrl6luxzco1cBTnjIUy#scrollTo=zuNPZYjjzH2g)
-- [TWISS Tool + Feature Extraction](https://colab.research.google.com/drive/1FR3xkad-RDvly9OLZYEP_mZYXLw_zWQ8)
 
 ## Results
 
