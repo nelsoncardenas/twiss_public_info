@@ -12,7 +12,7 @@ This project presents the development of a hybrid feature selection tool based o
 As the image shows, the TWISS median is above, but with similar results to the All Features set. A Mann-Whitney U test is carried out, which concludes that the TWISS set produces results without significant differences with respect to using all the features. In addition, TWISS achieves significantly higher results than Hudgins. In raw terms TWISS outperformed the All Features set (0.6536) and the Hudgins set (0.5626) with an average F1-macro of 0.6614.
 
 <figure>
-  <img src="https://github.com/nelsoncardenas/twiss_project/assets/18086414/72ee7b7d-796f-49b6-8879-b2b36d7a9e72" alt="Description of the image" style="width: 50%; height: auto;"">
+  <img src="https://github.com/user-attachments/assets/cca1c5c3-0373-4742-87b7-6761e307b3e3" alt="Description of the image" style="width: 50%; height: auto;"">
   <figcaption>
     <br><i>Performance (48 characteristics) against static techniques (All Features and Hudgins) with the LR classifier. Own creation.</i>
   </figcaption>
