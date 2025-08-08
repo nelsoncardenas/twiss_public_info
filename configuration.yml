@@ -1,0 +1,114 @@
+random_state: 42
+local_mode: ON
+preprocessing:
+  visualize_channel: "1"
+  sample_frequency: 2000
+  window_size: 256 # window size in milliseconds
+  sampling_period: 0.5 # sampling period in miliseconds
+  drop_percentage: 
+    s1: 0.0552
+    s2: 0.065
+    s21: 0.0439
+    s22: 0.0335
+feature_extraction:
+  links:
+    s1: "https://drive.google.com/file/d/1JEPwfIGr-bBZ4mbUT075Ho-0qg7TFcBz/view?usp=share_link"
+    s2: "https://drive.google.com/file/d/1Q4ZLIe-KMgs1DXeRJs09LORoMN1Po9fb/view?usp=share_link"
+    s21: "https://drive.google.com/file/d/1TCUZZj_A1OtkThtR5nlVIuzS2MgpCkQJ/view?usp=share_link"
+    s22: "https://drive.google.com/file/d/1YVpiMj8UaeKOC_6WMLU11wrAj2PGqyG9/view?usp=share_link"
+  channels:
+    - Ch_1
+    - Ch_2
+    - Ch_3
+    - Ch_4
+    - Ch_5
+    - Ch_6
+    - Ch_7
+    - Ch_8
+    - Ch_9
+    - Ch_10
+    - Ch_11
+    - Ch_12
+  quantile_stimator: 0.85
+  tsfresh_setting:
+    absolute_sum_of_changes: null
+    number_crossing_m:
+    - m: 0
+    slope_sign_change: null
+    ar_coefficient:
+    - k: 4
+      coeff: 0
+    - k: 4
+      coeff: 1
+    - k: 4
+      coeff: 2
+    - k: 4
+      coeff: 3
+    - k: 4
+      coeff: 4
+    variance: null
+    root_mean_square: null
+    willison_amplitude:
+    - t: "please override in the feature extraction"
+    psd_aggregated:
+    - aggtype: mean_frequency
+    - aggtype: median_frequency
+    - aggtype: peak_frequency
+    - aggtype: mean_power
+paths:
+  raw_template: "data/raw_zone/Subject_{#subject}/S{#subject}_E{#exercise}_A1.mat"
+  preprocess: "data/preprocess_zone"
+  preprocess_template: "data/preprocess_zone/subject_{#subject}.csv"
+  preprocess_image_template: "data/preprocess_zone/images/example_{name}_subject_{#subject}_E{#exercise}_channel_{#channel}.png"
+  preprocess_distribution_template: "data/preprocess_zone/images/label_distribution_subject_{#subject}_E1and2.pdf"
+  features: "data/feature_zone"
+  features_template: "data/feature_zone/subject_{#subject}.csv"
+  selector: "features"
+  evaluator: "data/artifacts_zone/evaluators"
+  subject_template: "data/feature_zone/S{subject_number}_E1_E2_A1_extracted_features.csv"
+  selectors_template: "data/artifacts_zone/selectors/selectors_subject_{subject_number}.pkl"
+  evaluator_template: "data/artifacts_zone/evaluators/evaluators_{subject_number}.pkl"
+  train_test_template: "data/train_test_zone/subject_{subject_number}_{split}.csv"
+  trainer: "data/artifacts_zone/trainers/experiment_train.pkl"
+  evaluation_df: "data/artifacts_zone/evaluators/evaluation.csv"
+subjects: ["1", "2", "21", "22"]
+target_column: "Labels"
+split:
+  train_size: 0.8
+remover:
+  correlation_threshold: 0.9
+model_factory:
+  n_splits: 4
+  lr_c_size: 8
+  random_state: 42
+exp_train:
+  n_splits: 4
+selector:
+  n_splits: 4
+twiss:
+  w: [0.33, 0.34, 0.33]
+  metrics: [chi2, mutual_information, anova]
+topsis_filter:
+  ranker:
+    w: [0.33, 0.34, 0.33]
+    metrics: [chi2, mutual_information, anova]
+hudgins_set:
+  {
+    mean_absolute_value,
+    number_crossing_m,
+    _slope_sign_change,
+    absolute_sum_of_changes,
+  }
+sizes: [24, 48]
+max_features: 48
+clasifiers: ["lr", "lda"]
+debug:
+  enabled: False # activates debug mode for the experiments.
+  smaller_sets: True
+  sizes: [2, 4]
+  size_predefined_sets: 192
+  small_model_factory: True
+  model_factory:
+    n_splits: 5
+    lr_c_size: 1
+    random_state: 42
